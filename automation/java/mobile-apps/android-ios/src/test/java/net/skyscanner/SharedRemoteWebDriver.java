@@ -1,5 +1,6 @@
 package net.skyscanner;
 
+import cucumber.api.java.Before;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -10,6 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+import static net.skyscanner.utils.CommandLineExecutor.executeCommand;
 import static org.openqa.selenium.remote.CapabilityType.*;
 
 @SuppressWarnings("UnusedDeclaration")
@@ -17,10 +19,9 @@ public class SharedRemoteWebDriver extends EventFiringWebDriver {
     public static RemoteWebDriver SHARED_REMOTE_WEBDRIVER;
     private static DesiredCapabilities capabilities;
 
-    private Platform currentPlatform = Platform.getCurrent();
-
     private String userPath = System.getProperty("user.home");
     private File rootPath = new File(userPath);
+    private String appiumHttpProxy = "http://127.0.0.1:4723/wd/hub";
 
     private String device = System.getProperty("device");
     private String browser = System.getProperty("browser");
@@ -38,15 +39,14 @@ public class SharedRemoteWebDriver extends EventFiringWebDriver {
         }
     };
 
-    private String getCurrentPlatform() {
-        String platform;
+    public String getCurrentPlatform() {
+        String platform = "WIN";
+        Platform currentPlatform = Platform.getCurrent();
 
         if (Platform.MAC.is(currentPlatform))
             platform = "MAC";
         else if (Platform.LINUX.is(currentPlatform) || Platform.UNIX.is(currentPlatform))
             platform = "LINUX";
-        else
-            platform = "WIN";
 
         return platform;
     }
@@ -80,7 +80,21 @@ public class SharedRemoteWebDriver extends EventFiringWebDriver {
 
         setCommandTimeout("60");
 
-        String url = "http://127.0.0.1:4723/wd/hub";
-        SHARED_REMOTE_WEBDRIVER = new SwipeableWebDriver(new URL(url), capabilities);
+        SHARED_REMOTE_WEBDRIVER = new SwipeableWebDriver(new URL(appiumHttpProxy), capabilities);
+    }
+
+    @Before
+    private void launchAppiumServer() {
+        String appiumCommand = "appium --log appium.log --log-timestamp ";
+
+        if (getCurrentPlatform().equalsIgnoreCase("mac")) {
+            appiumCommand = "/opt/X11/bin/xterm -e  /usr/local/bin/appium --log-timestamp ";
+        }
+
+        try {
+            executeCommand(appiumCommand);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 }
