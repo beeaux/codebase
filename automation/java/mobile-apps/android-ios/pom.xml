@@ -108,5 +108,10 @@
             <artifactId>phantomjsdriver</artifactId>
             <version>1.0.4</version>
         </dependency>
+        <dependency>
+             <groupId>net.masterthought</groupId>
+             <artifactId>cucumber-reporting</artifactId>
+             <version>0.0.22</version>
+         </dependency>
     </dependencies>
 </project>
