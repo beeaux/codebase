@@ -39,7 +39,7 @@ public class SharedRemoteWebDriver extends EventFiringWebDriver {
         }
     };
 
-    public String getCurrentPlatform() {
+    public static String getCurrentPlatform() {
         String platform = "WIN";
         Platform currentPlatform = Platform.getCurrent();
 
@@ -81,20 +81,5 @@ public class SharedRemoteWebDriver extends EventFiringWebDriver {
         setCommandTimeout("60");
 
         SHARED_REMOTE_WEBDRIVER = new SwipeableWebDriver(new URL(appiumHttpProxy), capabilities);
-    }
-
-    @Before
-    private void launchAppiumServer() {
-        String appiumCommand = "appium --log appium.log --log-timestamp ";
-
-        if (getCurrentPlatform().equalsIgnoreCase("mac")) {
-            appiumCommand = "/opt/X11/bin/xterm -e  /usr/local/bin/appium --log-timestamp ";
-        }
-
-        try {
-            executeCommand(appiumCommand);
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
-        }
     }
 }

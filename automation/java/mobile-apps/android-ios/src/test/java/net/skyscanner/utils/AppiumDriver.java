@@ -1,6 +1,11 @@
 package net.skyscanner.utils;
 
 
+import cucumber.api.java.Before;
+
+import static net.skyscanner.SharedRemoteWebDriver.getCurrentPlatform;
+import static net.skyscanner.utils.CommandLineExecutor.executeCommand;
+
 public class AppiumDriver {
 
     @Before
