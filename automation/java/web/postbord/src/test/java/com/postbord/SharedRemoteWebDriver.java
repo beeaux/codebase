@@ -40,6 +40,7 @@ public class SharedRemoteWebDriver extends EventFiringWebDriver {
         .usingDriverExecutable(new File(chromeDriverExecutable))
         .usingAnyFreePort()
         .withLogFile(new File("chromedriver.log"))
+        .withVerbose(true)
         .build();
         
     try {
