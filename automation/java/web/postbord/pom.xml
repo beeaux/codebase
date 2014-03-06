@@ -11,102 +11,108 @@
     <name>Postbord: Test automation using Fluent-Selenium</name>
 
     <properties>
-             <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-             <selenium.version>2.40.0</selenium.version>
-             <cukes.version>1.1.5</cukes.version>
-             <dependency.scope>test</dependency.scope>
-             <test.env.target>integration</test.env.target>
-             <test.browser.client>phantomjs</test.browser.client>
-             <cucumber.options>--format html:target/reports/cucumber/html json:target/reports/cucumber/result.json --tags @acceptance-test</cucumber>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <selenium.version>2.40.0</selenium.version>
+        <cukes.version>1.1.5</cukes.version>
+        <slf4j.version>1.7.6</slf4j.version>
+        <dependency.scope>test</dependency.scope>
+        <test.env.target>integration</test.env.target>
+        <test.browser.client>phantomjs</test.browser.client>
+        <cucumber.options>--format html:target/reports/cucumber/html json:target/reports/cucumber/result.json --tags @acceptance-test</cucumber.options>
     </properties>
     
     <repositories>
-             <repository>
-                      <id>central</id>
-                      <url>http://search.maven.org/</url>
-             </repository>
+     <repository>
+          <id>central</id>
+          <url>http://repo1.maven.org/maven2/</url>
+     </repository>
     </repositories>
     <build>
-             <plugins>
-                      <plugin>
-                           <groupId>org.apache.maven.plugins</groupId>
-                         <artifactId>maven-surefire-plugin</artifactId>
-                         <version>2.16</version>
-                         <configuration>
-                             <useFile>false</useFile>
-                             <systemPropertyVariables>
-                                 <cucumber.options>${cucumber.options}</cucumber.options>
-                             </systemPropertyVariables>
-                         </configuration>
-                      </plugin>
-             </plugins>
+     <plugins>
+      <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-surefire-plugin</artifactId>
+         <version>2.16</version>
+         <configuration>
+             <useFile>false</useFile>
+             <systemPropertyVariables>
+                 <cucumber.options>${cucumber.options}</cucumber.options>
+             </systemPropertyVariables>
+         </configuration>
+      </plugin>
+     </plugins>
     </build>
     <dependencies>
-         <dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
              <groupId>junit</groupId>
              <artifactId>junit</artifactId>
              <version>4.11</version>
-         </dependency>
-         <dependency>
+        </dependency>
+        <dependency>
              <groupId>info.cukes</groupId>
              <artifactId>cucumber-java</artifactId>
              <version>${cukes.version}</version>
              <scope>${dependency.scope}</scope>
-         </dependency>
-         <dependency>
+        </dependency>
+        <dependency>
              <groupId>info.cukes</groupId>
              <artifactId>cucumber-junit</artifactId>
              <version>${cukes.version}</version>
              <scope>${dependency.scope}</scope>
-         </dependency>
-         <dependency>
+        </dependency>
+        <dependency>
              <groupId>info.cukes</groupId>
              <artifactId>cucumber-picocontainer</artifactId>
              <version>${cukes.version}</version>
              <scope>${dependency.scope}</scope>
-         </dependency>
-         <dependency>
+        </dependency>
+        <dependency>
              <groupId>org.seleniumhq.selenium</groupId>
              <artifactId>selenium-java</artifactId>
              <version>${selenium.version}</version>
              <scope>${dependency.scope}</scope>
-         </dependency>
-         <dependency>
+        </dependency>
+        <dependency>
              <groupId>org.seleniumhq.selenium</groupId>
              <artifactId>selenium-ie-driver</artifactId>
              <version>${selenium.version}</version>
              <scope>${dependency.scope}</scope>
-         </dependency>
-         <dependency>
+        </dependency>
+        <dependency>
              <groupId>org.seleniumhq.selenium</groupId>
              <artifactId>selenium-chrome-driver</artifactId>
              <version>${selenium.version}</version>
              <scope>${dependency.scope}</scope>
-         </dependency>
-         <dependency>
+        </dependency>
+        <dependency>
              <groupId>org.seleniumhq.selenium</groupId>
              <artifactId>selenium-firefox-driver</artifactId>
              <version>${selenium.version}</version>
              <scope>${dependency.scope}</scope>
-         </dependency>
-         <dependency>
+        </dependency>
+        <dependency>
              <groupId>org.seleniumhq.selenium</groupId>
              <artifactId>selenium-safari-driver</artifactId>
              <version>${selenium.version}</version>
              <scope>${dependency.scope}</scope>
-         </dependency>
-         <dependency>
+        </dependency>
+        <dependency>
              <groupId>org.seleniumhq.selenium.fluent</groupId>
              <artifactId>fluent-selenium</artifactId>
              <version>1.14.5</version>
              <scope>${dependency.scope}</scope>
-         </dependency>
-         <dependency>
+        </dependency>
+        <dependency>
              <groupId>com.github.detro.ghostdriver</groupId>
              <artifactId>phantomjsdriver</artifactId>
              <version>1.1.0</version>
              <scope>${dependency.scope}</scope>
-         </dependency>
+        </dependency>
     </dependencies>
 
 </project>
