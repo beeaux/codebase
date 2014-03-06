@@ -55,7 +55,7 @@ public class SharedRemoteWebDriver extends EventFiringWebDriver {
     }
   
     private RemoteWebDriver setSharedDriverToChrome() throws MalformedURLException, RuntimeException {
-        String chromeDriverExecutable = getDriverExecutable("chrome-driver");
+        String chromeDriverExecutable = getDriverExecutable("chrome");
 
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setBinary("");
@@ -63,7 +63,7 @@ public class SharedRemoteWebDriver extends EventFiringWebDriver {
         DriverService driverService = new ChromeDriverService.Builder()
             .usingDriverExecutable(new File(chromeDriverExecutable))
             .usingAnyFreePort()
-            .withLogFile(new File("chrome-driver.log"))
+            .withLogFile(new File("chrome.log"))
             .withVerbose(true)
             .build();
 
@@ -75,16 +75,17 @@ public class SharedRemoteWebDriver extends EventFiringWebDriver {
         }
 
         capabilities = DesiredCapabilities.chrome();
+        setDesiredCapabilities();
 
         return new RemoteWebDriver(driverService.getUrl(), capabilities);
     }
     private RemoteWebDriver setSharedDriverToInternetExplorer() throws MalformedURLException, RuntimeException {
-        String ieDriverExecutable = getDriverExecutable("ie-driver");
+        String ieDriverExecutable = getDriverExecutable("iexplorer");
 
         DriverService driverService = new InternetExplorerDriverService.Builder()
                 .usingDriverExecutable(new File(ieDriverExecutable))
                 .usingAnyFreePort()
-                .withLogFile(new File("ie-driver.log"))
+                .withLogFile(new File("iexplorer.log"))
                 .withLogLevel(InternetExplorerDriverLogLevel.ERROR)
                 .build();
 
@@ -97,14 +98,39 @@ public class SharedRemoteWebDriver extends EventFiringWebDriver {
 
         capabilities = DesiredCapabilities.internetExplorer();
         capabilities.setCapability(INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+        setDesiredCapabilities();
+
+        return new RemoteWebDriver(driverService.getUrl(), capabilities);
+    }
+    
+    private RemoteWebDriver setSharedDriverToPhantomJS() throws MalformedURLException, RuntimeException {
+        String phantomjsDriverExecutable = getDriverExecutable("phantomjs");
+        
+        DriverService driverService = new ChromeDriverService.Builder()
+            .usingPhantomJSExecutable(new File(chromeDriverExecutable))
+            .usingAnyFreePort()
+            .withLogFile(new File("phantomjs.log"))
+            .usingCommandLineArguments(String[] "")
+            .build();
+            
+        try {
+            driverService.start();
+        } catch (IOException e) {
+            logger.error("", e.getMessage());
+            e.printStackTrace();
+        }
+
+        capabilities = DesiredCapabilities.internetExplorer();
+        setDesiredCapabilities();
 
         return new RemoteWebDriver(driverService.getUrl(), capabilities);
     }
 
-    private static RemoteWebDriver setSharedDriverToFirefox() throws MalformedURLException, RuntimeException {
+    private RemoteWebDriver setSharedDriverToFirefox() throws MalformedURLException, RuntimeException {
         capabilities = DesiredCapabilities.firefox();
         capabilities.setCapability(BINARY, "webdriver.firefox.bin");
-        capabilities.setCapability("webdriver.log.file", new File("firefox-driver.log"));
+        capabilities.setCapability("webdriver.log.file", new File("firefox.log"));
+        setDesiredCapabilities();
 
         return new RemoteWebDriver(capabilities);
     }
@@ -112,9 +138,9 @@ public class SharedRemoteWebDriver extends EventFiringWebDriver {
     private String getDriverExecutable(String driver) {
         String driverExecutable = null;
 
-        if (driver.equalsIgnoreCase("chrome-driver")) {
+        if (driver.equalsIgnoreCase("chrome")) {
             driverExecutable = setChromeDriverExecutable();
-        } else if (driver.equalsIgnoreCase("ie-driver")) {
+        } else if (driver.equalsIgnoreCase("ie")) {
 
         } else {
 
@@ -143,5 +169,11 @@ public class SharedRemoteWebDriver extends EventFiringWebDriver {
             chromeDriverExecutable = "";
 
         return chromeDriverExecutable;
+    }
+    
+    private static void setDesiredCapabilities() {
+        capabilities.setJavascriptEnabled(true);
+        capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+        capabilities.setCapability(CapabilityType.TAKES_SCREENSHOT, true);
     }
 }
