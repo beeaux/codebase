@@ -8,10 +8,14 @@
       <noOfConcurrentStreams></noOfConcurrentStreams>
       <streamingHoursAllowance></streamingHoursAllowance>
       <geoLocation></geoLocation>
-      <playlists>
+      <broadcast>
+        <channelAllowance></channelAllowance>
+        <maxChannels></maxChannels>
+      </broadcast>
+      <playlist>
         <maxPlaylist></maxPlaylist>
         <shared></shared>
-      </playlists>
+      </playlist>
       <notification>
         <newReleases></newReleases>
         <promotionalOffers></promotionalOffers>
