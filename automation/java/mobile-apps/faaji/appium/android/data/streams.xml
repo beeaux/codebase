@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<streams>
+  <stream>
+    <trackIRSC></trackIRSC>
+    <timestamp>
+      <lastStreamed></lastStreamed>
+    </timestamp>
+    <perPlayPerListener></perPlayPerListener>
+    <aggregatedTimespent></aggregatedTimespent>
+    <geoLocation></geoLocation>
+  </stream>
+</streams>
