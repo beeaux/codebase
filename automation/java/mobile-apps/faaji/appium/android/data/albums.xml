@@ -13,5 +13,8 @@
     <zero-byte>If a track number is stored, this byte contains a binary 0</zero-byte>
     <format>file format</format>
     <comment></comment>
+    <associatedChannels>
+      <channelId></channelId>
+    </associatedChannels>
   </album>
 </albums>
