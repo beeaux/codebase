@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<playlists>
+  <playlist>
+    <id></id>
+    <accountId></accountId>
+    <title></title>
+    <noOfTracks></noOfTracks>
+    <tracks>
+      <trackId></trackId>
+    </tracks>
+    <dateCreated></dateCreated>
+    <shared></shared>
+    <noOfFollowers></noOfFollowers>
+  </playlist>
+</playlists>
