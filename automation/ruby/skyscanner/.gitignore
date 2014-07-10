@@ -1,0 +1,5 @@
+reports/*
+chromedriver.log
+tmp/*
+.idea/
+drivers/*

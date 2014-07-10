@@ -1,0 +1,2 @@
+default: --format pretty
+firefox: --format pretty -r features/support/profiles/firefox.rb -r features/feature_sets -r features/step_definitions -r features/page_objects
