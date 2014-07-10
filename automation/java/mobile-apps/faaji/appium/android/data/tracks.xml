@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tracks>
+  <track>
+    <id></id>
+    <title>60 characters of the title</title>
+    <albumId></albumId>
+    <duration>the duration of the media as mmm:ss</duration>
+    <artistry>
+      <composers></composers>
+      <songwriters></songwriters>
+      <perfromers></perfromers>
+      <arrangers></arrangers>
+    </artistry>
+    <trackNo></trackNo>
+    <message></message>
+    <speed></speed>
+  </track>
+</tracks>
