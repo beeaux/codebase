@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<activities>
+  <activity>
+    <id></id>
+    <accountId></accountId>
+    <type></type>
+    <timestamp></timestamp>
+    <geLocation></geLocation>
+  </activity>
+</activities>
