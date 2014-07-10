@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<albums>
+  <album>
+    <id></id>
+    <hearder>"TAG"</hearder>
+    <title>60 characters of the album name</title>
+    <artistId></artistId>
+    <year>A four-digit year</year>
+    <genreId></genreId>
+    <artwork>Index in a list of genres, or 255</artwork>
+    <duration>the duration of the media as mmm:ss</duration>
+    <track>The number of the track on the album</track>
+    <zero-byte>If a track number is stored, this byte contains a binary 0</zero-byte>
+    <format>file format</format>
+    <comment></comment>
+  </album>
+</albums>
