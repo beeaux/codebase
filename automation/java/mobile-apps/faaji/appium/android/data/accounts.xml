@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<accounts>
+  <account>
+    <id></id>
+    <email></email>
+    <password></password>
+    <username></username>
+    <fullname></fullname>
+    <dateOfBirth></dateOfBirth>
+    <subscriptionId></subscriptionId>
+  </account>
+</accounts>
