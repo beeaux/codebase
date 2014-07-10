@@ -14,5 +14,8 @@
     <trackNo></trackNo>
     <message></message>
     <speed></speed>
+    <associatedChannels>
+      <channelId></channelId>
+    </associatedChannels>
   </track>
 </tracks>
