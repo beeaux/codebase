@@ -3,8 +3,6 @@ require 'selenium-webdriver'
 require 'cucumber'
 require 'capybara/poltergeist'
 
-#include Capybara::DSL
-
 @drivers_path = File.dirname(__FILE__) + '/drivers/'
 @host_platform = Selenium::WebDriver::Platform
 
