@@ -1,15 +1,13 @@
-require File.dirname(__FILE__) + '/../env.rb'
+require File.dirname(__FILE__) + '/../env'
 
-Capybara.current_driver = :selenium
+Capybara.default_driver = :selenium
 Capybara.register_driver :selenium do |driver|
   chrome_driver_path = @drivers_path + 'chrome/'
 
   if @host_platform.linux?
-    if @host_platform.bitsize == 64
-      Selenium::WebDriver::Chrome.driver_path = chrome_driver_path + 'chrome_linux64'
-    else
-      Selenium::WebDriver::Chrome.driver_path = chrome_driver_path + 'chrome_linux32'
-    end
+    (@host_platform.bitsize == 64) ?
+        Selenium::WebDriver::Chrome.driver_path = chrome_driver_path + 'chrome_linux64' :
+        Selenium::WebDriver::Chrome.driver_path = chrome_driver_path + 'chrome_linux32'
   elsif @host_platform.mac?
     Selenium::WebDriver::Chrome.driver_path = chrome_driver_path + 'chrome_macosx'
   else
@@ -17,7 +15,8 @@ Capybara.register_driver :selenium do |driver|
   end
 
   options = {
-      browser: :chrome
+      browser: :chrome,
+      :switches => %w[--ignore-certificate-errors --disable-popup-blocking --disable-translate]
   }
   Capybara::Selenium::Driver.new(driver, options)
 end

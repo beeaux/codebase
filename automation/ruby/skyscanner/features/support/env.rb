@@ -2,6 +2,8 @@ require 'capybara'
 require 'selenium-webdriver'
 require 'cucumber'
 require 'capybara/poltergeist'
+require 'capybara/dsl'
+require 'capybara/cucumber'
 
 @drivers_path = File.dirname(__FILE__) + '/drivers/'
 @host_platform = Selenium::WebDriver::Platform

@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/../env.rb'
+require File.dirname(__FILE__) + '/../env'
 
-Capybara.current_driver = :selenium
+Capybara.default_driver = :selenium
 Capybara.register_driver :selenium do |driver|
   options = {
       browser: :firefox
